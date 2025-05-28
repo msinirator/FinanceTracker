@@ -1,0 +1,940 @@
+<html>
+
+    <style>
+        
+            h1 {
+                color: rgb(166, 202, 240);
+                font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            }
+
+
+            /* Expenses grid */
+            .dgExpenses.table {border-collapse: collapse;
+               border:2px solid rgb(140 140 140);
+               font-family: sans-serif;
+               /* font-size: 0.8rem; */
+               font-size: 14px;
+               letter-spacing: 1px;
+               color: rgb(166, 202, 240);
+            }
+
+            .dgExpenses.thead {
+                background-color: rgb(228 240 245);
+                color:cornflowerblue
+            }
+
+            .dgExpenses.th,
+            .dgExpenses.td {
+                border: 1px solid rgb(160 160 160);
+                padding: 8px 10px;
+            }
+
+            .dgExpenses.td {
+                text-align:center;
+            }
+
+            .dgExpenses.tbody > tr:nth-of-type(even) {
+                background-color: rgb(237 238 242);
+            }
+
+
+            /* Select grid */
+            .dgSelect.table {border-collapse: collapse;
+               /* border:2px solid rgb(140 140 140); */
+               font-family: sans-serif;
+               /* font-size: 0.8rem; */
+               font-size: 14px;
+               letter-spacing: 1px;
+            }
+
+            .dgSelect.td {
+                /* border: 1px solid rgb(160 160 160); */
+                padding: 8px 10px;
+            }
+
+
+            /* Submit grid */
+            .dgSubmit.table {border-collapse: collapse;
+               /* border:2px solid rgb(140 140 140); */
+               font-family: sans-serif;
+               font-size: 0.8rem;
+               letter-spacing: 1px;
+               position: relative;
+               left: 5px;
+            }
+
+            .dgSubmit.td {
+                /* border: 1px solid rgb(160 160 160); */
+                padding: 8px 10px;
+            }
+
+
+            /* Totals Grid */
+            .dgTotals.table {border-collapse: collapse;
+               /* border:2px solid rgb(140 140 140); */
+               font-family: sans-serif;
+               font-size: 24px;
+               letter-spacing: 1px;
+               position: relative;
+               right: 204px;
+               /* bottom: 20px; */
+               color: rgb(166, 202, 240);
+            }
+
+            .dgTotals.td {
+                /* border: 1px solid rgb(160 160 160); */
+                padding: 8px 10px;
+            }
+
+
+            /* Text box controls */
+            .txtAmount.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                /* color: #333; */
+                font-size: 24px;
+                /* margin: 0 0 20px; */
+                padding: .2rem;
+                /* width: 100%; */
+                width: 200px;
+                text-align: center;
+                color: green;
+            }
+
+            .txtDescription.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                color: rgb(166, 202, 240);
+                font-size: 24px;
+                /* margin: 0 0 20px; */
+                padding: .2rem;
+                width: 330px;
+                text-align: center;
+            }
+
+            .txtTotal.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                /* color: #333; */
+                font-size: 24px;
+                /* margin: 0 0 20px; */
+                padding: .2rem;
+                /* width: 100%; */
+                width: 200px;
+                text-align: center;
+                color: crimson;
+            }
+
+            .txtEdit.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                /* color: #333; */
+                font-size: 20px;
+                /* margin: 0 0 20px; */
+                padding: .2rem;
+                /* width: 100%; */
+                width: 200px;
+                text-align: center;
+                color: rgb(166, 202, 240);
+            }
+
+
+            /* Drop down controls */
+            .ddYear.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                color: rgb(166, 202, 240);
+                font-size: 16px;
+                /* margin: 0 0 20px; */
+                padding: .2rem .5rem;
+                /* width: 100%; */
+            }
+
+            .ddMonth.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                color: rgb(166, 202, 240);
+                font-size: 14px;
+                /* margin: 0 0 20px; */
+                padding: .2rem .5rem;
+                /* width: 100%; */
+            }
+
+            .ddWeek.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                color: rgb(166, 202, 240);
+                font-size: 14px;
+                /* margin: 0 0 20px; */
+                padding: .2rem .5rem;
+                /* width: 100%; */
+                width: 250px;
+            }
+
+            .ddDay.input {
+                border: 2px solid #333;
+                border-radius: 5px;
+                color: rgb(166, 202, 240);
+                font-size: 14px;
+                /* margin: 0 0 20px; */
+                padding: .2rem .5rem;
+                /* width: 100%; */
+            }
+
+            /* Button */
+            .button-3 {
+                appearance: none;
+                /* background-color: #2ea44f; */
+                background-color: rgb(166, 202, 240);
+                border: 1px solid rgba(27, 31, 35, .15);
+                border-radius: 6px;
+                box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 6px 16px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+
+            .button-3:focus:not(:focus-visible):not(.focus-visible) {
+                box-shadow: none;
+                outline: none;
+            }
+
+            .button-3:hover {
+                background-color: rgb(140, 186, 236);
+                /* background-color: #2c974b; */
+            }
+
+            .button-3:focus {
+                box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+                outline: none;
+            }
+
+            .button-3:disabled {
+                background-color: rgb(166, 202, 240);
+                /* background-color: #94d3a2; */
+                border-color: rgba(27, 31, 35, .1);
+                color: rgba(255, 255, 255, .8);
+                cursor: default;
+            }
+
+            .button-3:active {
+                background-color: rgb(166, 202, 240);
+                /* background-color: #298e46; */
+                box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+            }
+        
+    </style>     
+
+
+    <body>
+
+        <center>
+        
+        <br>
+
+        <h1>Finance Tracker</h1>
+        
+        <br>
+        
+
+        <form action="/add" method="post" id="frmSubmit" enctype="multipart/form-data">
+
+            <!-- Select Grid -->
+            <table class="dgSelect table">
+                <tbody>
+                    
+                    <!-- Row1 -->
+                    <tr>
+                         
+                        <td class="dgSelect td">
+                            Select Year:
+                        </td>
+
+                        <td class="dgSelect td">
+                            <input class="ddYear input" type="number" name="finYear" id="ddYear" min="1900" max="2099" step="1"/>
+                        </td>
+                        
+                        <td class="dgSelect td">                            
+                        </td>
+
+                        <td class="dgSelect td">                                                        
+                        </td>
+
+                    </tr>
+                    
+                    <!-- Row2 -->
+                    <tr>
+                        <td class="dgSelect td">
+                            Select Month:
+                        </td>
+
+                        <td class="dgSelect td">
+                            <select class="ddMonth input" name="finMonth" id="ddMonth" onChange="changeMonth(this.value)">
+                            <option value="0"></option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                          </select>
+                        </td>
+
+                        <td class="dgSelect td">
+                            <input type="checkbox" id="chkShowMonth" name="chkShowMonth"/>
+                            <label for="chkShowMonth">Show Entire Month</label>
+                        </td>
+
+                        <td class="dgSelect td">
+                            <button class="button-3" type="submit" name = "clear" value = "month" id="cmdClearMonth" formaction="/clear">Clear Month</button>                            
+                        </td>
+                    </tr>
+
+
+                    <!-- Row3 -->
+                    <tr>
+                        <td class="dgSelect td">
+                            Select Week: 
+                        </td>
+
+                        <td class="dgSelect td">
+                            <select class="ddWeek input" name="finWeek" id="ddWeek" onChange="changeDay()"></select>
+                        </td>
+
+                        <td class="dgSelect td">
+                            <input type="checkbox" id="chkShowWeek" name="chkShowWeek"/>
+                            <label for="chkShowWeek">Show Entire Week</label>                            
+                        </td>
+
+                        <td class="dgSelect td">
+                            <button class="button-3" type="submit" name = "clear" value = "week" id="cmdClearWeek" formaction="/clear">Clear Week</button>                            
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Row4 -->
+                    <tr>
+                        <td class="dgSelect td">
+                            Select Day:
+                        </td>
+
+                        <td class="dgSelect td">
+                            <select class="ddDay input" name="finDay" id="ddDay" onChange="changeDay()">
+                                <option value="0"></option>
+                                <option value="1">Friday</option>
+                                <option value="2">Saturday</option>
+                                <option value="3">Sunday</option>
+                                <option value="4">Monday</option>
+                                <option value="5">Tuesday</option>
+                                <option value="6">Wednesday</option>
+                                <option value="7">Thursday</option>                            
+                            </select>
+                        </td>
+
+                        <td class="dgSelect td">                            
+                        </td>
+
+                        <td class="dgSelect td">
+                            <button class="button-3" type="submit" name = "clear" value = "day" id="cmdClearDay" formaction="/clear">Clear Day</button>                            
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <br>
+            <div style="color:crimson; font-family: sans-serif; font-size: 24px;" id="message"></div>
+            <br>
+
+            <!-- Submit Grid -->
+            <table class="dgSubmit table">
+                <tbody>
+                    <tr>
+                        <td class="dgSubmit td">
+                            <input class="txtAmount input" type="text" name="finAmount" id="txtAmount" placeholder="Enter Amount">
+                        </td>
+
+                        <td class="dgSubmit td">
+                            <input class="txtDescription input" type="text" name="finDescription" id="txtDescription" placeholder="Enter Description">
+                        </td>
+
+                        <td class="dgSubmit td">
+                            <button class="button-3" type="submit" id="cmdEnterExpense">Enter Expense</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>                        
+            
+        <!-- </form> -->
+
+        <!-- Totals Grid -->
+        {% if total %}
+            <table class="dgTotals table">
+                <tbody>
+                    <tr>
+                        <td class="dgTotals td">
+                            <input class="txtTotal input" type="text" name="finTotal" id="txtTotal" value="${{total}}" readonly>
+                        </td>
+
+                        <td class="dgTotals td">
+                            Total
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table> 
+        {% endif %}
+        
+
+        <br><br><br>
+
+
+        <!-- Expenses Grid -->
+        {% if expenses %}
+        <table class="dgExpenses table">
+
+            <thead class="dgExpenses thead">
+                <tr>
+                <th class="dgExpenses th" scope="col">Day</th>
+                <th class="dgExpenses th" scope="col">Amount</th>
+                <th class="dgExpenses th" scope="col">Description</th>
+                <th class="dgExpenses th" scope="col">Date</th>
+                <th class="dgExpenses th" scope="col">Week</th>
+                <th class="dgExpenses th" scope="col">Edit Description</th>
+                <th class="dgExpenses th" scope="col">Receipt</th>
+                <th class="dgExpenses th" scope="col">Remove</th>                                                
+                </tr>
+            </thead>
+
+            <tbody class="dgExpenses tbody">
+                {% for expense in expenses %}
+                    <tr>
+                        <th class="dgExpenses th" scope="row">{{expense.day}}</th>
+                        <td class="dgExpenses td">${{expense.amount}}</td>
+                        <td class="dgExpenses td">{{expense.description}}</td>
+                        <td class="dgExpenses td">{{expense.expenseDate}}</td>
+                        <td class="dgExpenses td">{{expense.week}}</td>
+                                                
+                        <td class="dgExpenses td">
+                            <input class="txtEdit input" type="text" name="txtEdit_{{expense.id}}" id="txtEdit" onkeydown="txtEdit_keyDown(event, '{{expense.id}}')" placeholder="Press Enter to Edit">
+                        </td>
+                        
+                        {% if expense.receipt_name %}
+                            <td class="dgExpenses td"><a href="{{expense.receipt_url}}">{{expense.receipt_name}}</a></td>
+                        {% else %}
+                            <td class="dgExpenses td">                                
+                                <input style="font-size: 14px;" type="file" name="fcReceipt_{{expense.id}}" id="fcReceipt" onchange="fcReceipt_onChange('{{expense.id}}')">                                
+                            </td>
+                        {% endif %}
+                                                
+                        <td class="dgExpenses td">
+                            <button class="button-3" id="cmdDelete" onclick="cmdDelete_click('{{expense.id}}')">Delete</button>                            
+                        </td>
+                        
+                    </tr>                    
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+        {% endif %}
+
+        </form>
+
+        <br><br>
+        <br><br>
+        <br><br>
+
+        </center>
+
+    </body>
+
+    <script>
+        
+        //Create Weeks array
+        function changeMonth(month) {
+            
+            if(month == 0)
+            {
+                const ddWeek = document.getElementById('ddWeek');
+                ddWeek.innerHTML = "";
+                return;
+            }
+
+            const ddYear = document.getElementById('ddYear');
+            const year = ddYear.value;
+            const daysInMonth = getDaysInMonth(month, year);
+            
+            const weeks = [];
+            
+            let daysCount = 0;
+            let weekCount = 0;
+            let startDay = 0;
+            let endDay = 0;
+            let endDayLast = 0;
+            let startDate = '';
+            let endDate = '';
+
+            let endDayFix = 0
+            let endMonthFix = 0
+            let endYearFix = 0
+            let endDateFix = '';
+            let startDateLast = '';
+
+ 
+            //Find Friday
+            for (let day = 1; day <= daysInMonth; day++) {
+
+                let searchDate = month + '/' + day + '/' + year;                
+
+                if(getDayOfWeek(searchDate) == 'Friday')
+                {
+                    startDay = day;
+                    break;
+                }                
+            }
+            
+            startDate = month + '/' + startDay + '/' + year;
+
+            endDay = startDay;
+            weekCount = 1;
+
+            //Add empty selection
+            weeks.push('');
+
+
+            //Populate weeks array
+            for (let x = startDay; x <= daysInMonth; x++) {
+                
+                if (daysCount == 6)
+                {
+                    endDay = endDay + daysCount;
+                    endDate = month + '/' + endDay + '/' + year;
+
+                    if(endDayLast <= daysInMonth)
+                    {
+                        weeks.push('Week' + weekCount + ': ' + startDate + ' - ' + endDate);
+                        endDay = endDay + 1;
+
+                        startDateLast = startDate;
+                        endDayLast = endDay;
+
+                        startDate = month + '/' + endDay + '/' + year;
+                    
+                        daysCount = 1;
+                        weekCount = weekCount + 1;
+                    }
+                                                                            
+                }
+
+                daysCount = daysCount + 1;
+            }
+
+
+            //Fix last weeks date
+            if(endDayLast - 1 > daysInMonth)
+            {
+                endDayFix = endDayLast - daysInMonth - 1;
+                endMonthFix = parseInt(month) + 1;
+                endYearFix = parseInt(year);
+                
+                if(endMonthFix == 13)
+                {
+                    endMonthFix = 1;
+                    endYearFix = endYearFix + 1;
+                }
+
+                weekCount = weekCount - 1;
+                endDateFix = endMonthFix + '/' + endDayFix + "/" + endYearFix;
+
+                weeks.pop();
+                weeks.push('Week' + weekCount + ': ' + startDateLast + ' - ' + endDateFix);
+
+            }
+
+
+            //Populate weeks dropdown
+            const ddWeek = document.getElementById('ddWeek');
+            ddWeek.innerHTML = "";
+            
+            
+            weeks.forEach(optionText => {
+                const option = document.createElement('option');
+                option.value = optionText;
+                option.text = optionText;
+                ddWeek.appendChild(option);
+            });
+
+
+            //Show entire month
+            const chkShowMonth = document.getElementById("chkShowMonth");
+
+            if(chkShowMonth.checked)
+            {
+                changeDay()
+            }
+                        
+        };
+
+        function getDaysInMonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        };
+
+        function getDayOfWeek(dateString) {
+            const date = new Date(dateString);
+            const dayIndex = date.getDay();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return days[dayIndex];
+        };
+
+
+        //Drop down controls event
+        function changeDay() {
+            
+            const ddDay = document.getElementById("ddDay");
+            const ddMonth = document.getElementById("ddMonth");
+            const ddWeek = document.getElementById("ddWeek");
+            const ddYear = document.getElementById("ddYear");
+
+            const chkShowWeek = document.getElementById("chkShowWeek");
+            const chkShowMonth = document.getElementById("chkShowMonth");
+
+            //Validate check box input
+            if (ddYear.value == 0)
+                return;
+
+            if(chkShowMonth.checked)
+            {
+                if (ddMonth.value == 0)
+                {
+                    return;
+                }
+            }
+            else
+            {
+               if(chkShowWeek.checked)
+               {
+                    if (ddWeek.value == 0)
+                    {
+                        return;
+                    }
+               }
+               else
+               {
+                    if (ddMonth.value == 0)
+                    {
+                        return;
+                    }
+
+                    if (ddDay.value == 0)
+                    {
+                        return;
+                    }
+
+                    if (ddWeek.value == 0)
+                    {
+                        return;
+                    }
+               } 
+            }
+
+                      
+            const form = document.getElementById('frmSubmit');
+            form.action = "/showDay";
+            form.submit();            
+
+        }
+
+        //Delete route
+        function cmdDelete_click(expenseID)
+        {
+            const form = document.getElementById('frmSubmit');
+            form.action = "/delete/" + expenseID;
+            form.submit();
+        }
+
+        //Edit route
+        function txtEdit_keyDown(event, expenseID)
+        {
+            if (event.key === 'Enter' || event.keyCode === 13)
+            {
+                const form = document.getElementById('frmSubmit');
+                form.action = "/edit/" + expenseID;
+                form.submit();
+            }            
+        }
+
+        //Attach route
+        function fcReceipt_onChange(expenseID)
+        {
+            const form = document.getElementById('frmSubmit');
+            form.action = "/attach/" + expenseID;
+            form.submit();
+        }
+
+
+        window.addEventListener('load', formLoad);
+
+        //Retain form control values after submission
+        function formLoad() {
+
+            const day = "{{day}}";
+            const month = "{{month}}";
+            const week = "{{week}}";
+            const year = "{{year}}";
+            const showWeek = "{{showWeek}}";
+            const showMonth = "{{showMonth}}";
+
+
+            const ddDay = document.getElementById("ddDay");
+            ddDay.value = day;
+
+            const ddMonth = document.getElementById("ddMonth");
+            ddMonth.value = month;
+
+            const ddYear = document.getElementById("ddYear");
+            ddYear.value = year;
+
+
+            changeMonth(month);
+
+
+            const ddWeek = document.getElementById("ddWeek");
+            ddWeek.value = week;
+
+
+            //Set Week checkbox
+            const chkShowWeek = document.getElementById("chkShowWeek");
+            
+            if(showWeek == 'true')
+            {
+                chkShowWeek.checked = true;
+            }
+            else
+            {
+                chkShowWeek.checked = false;
+            }
+
+            //Set Month checkbox
+            const chkShowMonth = document.getElementById("chkShowMonth");
+            
+            if(showMonth == 'true')
+            {
+                chkShowMonth.checked = true;
+            }
+            else
+            {
+                chkShowMonth.checked = false;
+            }
+
+            const txtAmount = document.getElementById("txtAmount");
+            txtAmount.focus();
+            
+        }
+
+
+        const cmdClearDay = document.getElementById('cmdClearDay');
+        const cmdClearWeek = document.getElementById('cmdClearWeek');
+        const cmdClearMonth = document.getElementById('cmdClearMonth');
+        const cmdEnterExpense = document.getElementById('cmdEnterExpense');
+        const txtAmount = document.getElementById('txtAmount');
+        const txtDescription = document.getElementById('txtDescription');
+        
+
+        cmdClearDay.addEventListener("click", cmdclearDay_click);
+        cmdClearWeek.addEventListener("click", cmdclearWeek_click);
+        cmdClearMonth.addEventListener("click", cmdclearMonth_click);
+        cmdEnterExpense.addEventListener("click", cmdEnterExpense_click);
+
+        txtAmount.addEventListener("keyup", txtAmount_keyup);
+        txtAmount.addEventListener("keydown", txtAmount_keydown);
+        txtDescription.addEventListener("keydown", txtDescription_keydown);
+
+
+        //Add $ to amount
+        function txtAmount_keyup(event)
+        {
+            if(event.target.value == '')
+                return;
+
+            if(event.target.value[0] != '$')
+                event.target.value = "$" + event.target.value            
+        }
+
+        //Send focus to Description
+        function txtAmount_keydown(event)
+        {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+                const txtDescription = document.getElementById('txtDescription');
+                event.preventDefault();
+                txtDescription.focus();
+            }
+        }
+
+        //Activate add route on enter
+        function txtDescription_keydown(event)
+        {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+
+                const cmdEnterExpense = document.getElementById('cmdEnterExpense');
+                cmdEnterExpense.click(event);
+            }
+        }
+
+        //Validate input for clear route
+        function cmdclearDay_click(event)
+        {
+            const ddYear = document.getElementById("ddYear");
+            const ddDay = document.getElementById("ddDay");
+            const ddWeek = document.getElementById("ddWeek");
+            const ddMonth = document.getElementById("ddMonth");
+            
+            const message = document.getElementById("message");
+
+
+            switch (true) {
+                
+                case ddYear.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a year"
+                    break;
+
+                case ddDay.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a day"
+                    break;
+            
+                case ddWeek.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a week"
+                    break;
+                
+                case ddMonth.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a month"
+                    break;
+            }
+
+        }
+        
+        //Validate input for clear route
+        function cmdclearWeek_click(event)
+        {
+            const ddYear = document.getElementById("ddYear");
+            const ddWeek = document.getElementById("ddWeek");
+            const ddMonth = document.getElementById("ddMonth");
+            
+            const message = document.getElementById("message");
+
+
+            switch (true) {
+                 
+                case ddYear.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a year"
+                    break;
+
+                case ddWeek.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a week"
+                    break;
+                
+                case ddMonth.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a month"
+                    break;
+            }
+
+        }
+
+        //Validate input for clear route
+        function cmdclearMonth_click(event)
+        {
+            const ddYear = document.getElementById("ddYear");
+            const ddMonth = document.getElementById("ddMonth");
+            const message = document.getElementById("message");
+
+            switch (true) {
+                            
+                case ddYear.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a year"
+                    break;
+                
+                case ddMonth.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a month"
+                    break;
+            }
+
+        }
+
+        //Validate input for add route
+        function cmdEnterExpense_click(event)
+        {
+            const ddYear = document.getElementById("ddYear");
+            const ddMonth = document.getElementById("ddMonth");
+            const ddWeek = document.getElementById("ddWeek");
+            const ddDay = document.getElementById("ddDay");
+            const txtAmount = document.getElementById("txtAmount");
+            const txtDescription = document.getElementById("txtDescription");
+            const message = document.getElementById("message");
+
+            switch (true) {
+                
+                case ddYear.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a year"
+                    break;
+
+                case ddMonth.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a month"
+                    break;
+
+                case ddWeek.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a week"
+                    break;
+
+                case ddDay.value == 0:
+                    event.preventDefault();
+                    message.innerHTML = "Pick a day"
+                    break;
+            
+                case txtAmount.value == '':
+                    event.preventDefault();
+                    message.innerHTML = "Enter amount"
+                    break;
+
+                case txtDescription.value == '':
+                    event.preventDefault();
+                    message.innerHTML = "Enter description"
+                    break;
+            }
+
+        }        
+                
+    </script>
+</html>
