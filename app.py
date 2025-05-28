@@ -62,7 +62,7 @@ class Expense(db.Model):
     __tablename__ = 'expenses'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     day = db.Column(db.String(20), nullable=False)
-    amount = db.Column(nullable=False)
+    amount = db.Column(db.Money, nullable=False)
     description = db.Column(db.String(100), nullable=False)
     expenseDate = db.Column(db.String(10), nullable=False)
     week = db.Column(db.String(10), nullable=False)
