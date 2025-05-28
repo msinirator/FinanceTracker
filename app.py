@@ -359,12 +359,12 @@ def attach_receipt(expense_id):
     attachFile.save(file_path)
 
     #Local
-    receipt_url = file_path
+    # receipt_url = file_path
         
 
     #AWS bucket
-    # receipt_url = upload_to_s3(file_path, attachFile.filename)
-    # os.remove(file_path)
+    receipt_url = upload_to_s3(file_path, attachFile.filename)
+    os.remove(file_path)
 
 
     #Edit record
