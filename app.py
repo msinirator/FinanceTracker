@@ -38,6 +38,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #AWS secret
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
                        
@@ -361,7 +362,6 @@ def attach_receipt(expense_id):
     #Local
     # receipt_url = file_path
         
-
     #AWS bucket
     receipt_url = upload_to_s3(file_path, attachFile.filename)
     os.remove(file_path)
